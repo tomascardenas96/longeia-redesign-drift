@@ -1,0 +1,19 @@
+:root {
+  --tinta: #2e211b;
+  --crema: #f3ebdf;
+  --crema-2: #eadfce;
+  --terra: #c25a3c;
+  --terra-deep: #9c3b27;
+  --terra-deeper: #7e2e1e;
+  --terra-light: #e3a07e;
+  --tierra: #8a6f5c;
+  --linea: rgba(46, 33, 27, 0.12);
+  --font-title: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+  --spacing-unit: 0.5rem;
+  --spacing-xs: calc(var(--spacing-unit) * 2);
+  --spacing-sm: calc(var(--spacing-unit) * 4);
+  --spacing-md: calc(var(--spacing-unit) * 8);
+  --spacing-lg: calc(var(--spacing-unit) * 16);
+  --spacing-xl: calc(var(--spacing-unit) * 32);
+}

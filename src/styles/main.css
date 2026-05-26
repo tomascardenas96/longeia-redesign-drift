@@ -1,0 +1,4 @@
+@import "./base/variables.css";
+@import "./base/reset.css";
+@import "./base/global.css";
+@import "./sections/hero.css";
