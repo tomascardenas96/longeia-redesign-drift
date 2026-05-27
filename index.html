@@ -11,6 +11,11 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
     <header>
@@ -22,11 +27,89 @@
         <div class="hero__container">
           <div class="eyebrown">SALUD · BIENESTAR · ACOMPAÑAMIENTO</div>
           <h1>Longeia</h1>
-          <div class="hero__services-gallery"></div>
           <p class="hero__subtitle">
             Recursos para cuidarte mejor, de forma simple y profesional. Listos
             para descargar.
           </p>
+
+          <div class="hero__services-gallery">
+            <img
+              src="/src/assets/icons/chevron-left.svg"
+              alt="Anterior"
+              class="hero__chevron-left"
+              data-carousel-prev
+            />
+            <img
+              src="/src/assets/icons/chevron-right.svg"
+              alt="Siguiente"
+              class="hero__chevron-right"
+              data-carousel-next
+            />
+            <div class="hero__services-viewport">
+              <div class="hero__services-track" data-carousel-track>
+                <article class="service-card" style="--i: 0">
+                  <div class="service-card__media service-card__media--1">
+                    <span class="service-card__index">01</span>
+                    <h2 class="service-card__display">
+                      <span>yoga</span>
+                      <span>&amp; meditación</span>
+                      <span>matinal</span>
+                    </h2>
+                    <span class="service-card__wordmark">longeia</span>
+                  </div>
+                  <h3 class="service-card__title">Yoga &amp; Meditación 01</h3>
+                </article>
+                <article class="service-card" style="--i: 1">
+                  <div class="service-card__media service-card__media--2">
+                    <span class="service-card__index">02</span>
+                    <h2 class="service-card__display">
+                      <span>higiene</span>
+                      <span>dental</span>
+                      <span>inteligente</span>
+                    </h2>
+                    <span class="service-card__wordmark">longeia</span>
+                  </div>
+                  <h3 class="service-card__title">Higiene Dental 02</h3>
+                </article>
+                <article class="service-card" style="--i: 2">
+                  <div class="service-card__media service-card__media--3">
+                    <span class="service-card__index">03</span>
+                    <h2 class="service-card__display">
+                      <span>nutrición</span>
+                      <span>consciente</span>
+                      <span>de estación</span>
+                    </h2>
+                    <span class="service-card__wordmark">longeia</span>
+                  </div>
+                  <h3 class="service-card__title">Alimentación 03</h3>
+                </article>
+                <article class="service-card" style="--i: 3">
+                  <div class="service-card__media service-card__media--4">
+                    <span class="service-card__index">04</span>
+                    <h2 class="service-card__display">
+                      <span>pilates</span>
+                      <span>en casa</span>
+                      <span>&amp; movilidad</span>
+                    </h2>
+                    <span class="service-card__wordmark">longeia</span>
+                  </div>
+                  <h3 class="service-card__title">Movimiento 04</h3>
+                </article>
+                <article class="service-card" style="--i: 4">
+                  <div class="service-card__media service-card__media--5">
+                    <span class="service-card__index">05</span>
+                    <h2 class="service-card__display">
+                      <span>sueño</span>
+                      <span>reparador</span>
+                      <span>de raíz</span>
+                    </h2>
+                    <span class="service-card__wordmark">longeia</span>
+                  </div>
+                  <h3 class="service-card__title">Descanso 05</h3>
+                </article>
+              </div>
+            </div>
+          </div>
           <div class="hero__icons-container">
             <!-- Icono de Email -->
             <svg
@@ -35,13 +118,19 @@
               stroke="currentColor"
               stroke-width="1.6"
               class="icon"
+              style="--i: 0"
             >
               <rect x="2" y="4" width="20" height="16" rx="2"></rect>
               <path d="m2 7 10 6 10-6"></path>
             </svg>
 
             <!-- Icono de Tik Tok -->
-            <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="icon"
+              style="--i: 1"
+            >
               <path
                 d="M16 8.5a5 5 0 0 0 4 2V13a8 8 0 0 1-4-1v4.5a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.8a2.7 2.7 0 1 0 1.9 2.6V2h2.8a5 5 0 0 0 0 .5A5 5 0 0 0 16 6.5Z"
               ></path>
@@ -54,6 +143,7 @@
               stroke="currentColor"
               stroke-width="1.6"
               class="icon"
+              style="--i: 2"
             >
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
               <circle cx="12" cy="12" r="4"></circle>
@@ -72,14 +162,31 @@
               viewBox="0 0 24 24"
               fill="currentColor"
               class="icon"
+              style="--i: 3"
             >
               <path
                 d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2 1.2 2.3 1.1.2-.1.5-.5.7-.8.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"
               />
             </svg>
           </div>
+
+          <div class="hero__scroll-indicator">
+            <a href="#services">
+              <p>SEGUÍ EXPLORANDO</p>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                class="arrow-icon"
+              >
+                <path d="M12 5v14M6 13l6 6 6-6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
+
       <section id="services"></section>
     </main>
 

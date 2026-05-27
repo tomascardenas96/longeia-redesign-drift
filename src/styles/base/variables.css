@@ -9,11 +9,16 @@
   --tierra: #8a6f5c;
   --linea: rgba(46, 33, 27, 0.12);
   --font-title: "Fraunces", serif;
-  --font-body: "Inter", sans-serif;
+  --font-body: "Roboto", sans-serif;
   --spacing-unit: 0.5rem;
   --spacing-xs: calc(var(--spacing-unit) * 2);
   --spacing-sm: calc(var(--spacing-unit) * 4);
   --spacing-md: calc(var(--spacing-unit) * 8);
   --spacing-lg: calc(var(--spacing-unit) * 16);
   --spacing-xl: calc(var(--spacing-unit) * 32);
+  --ease-out-soft: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-fast: 250ms;
+  --motion-mid: 350ms;
+  --motion-slow: 800ms;
 }
