@@ -1,0 +1,59 @@
+#slider {
+  /* Figma: full-width band, 57px tall.
+     Dark surface: reads apart from the terracotta join band above and
+     layers subtly over the (darker) footer below. */
+  background: var(--color-dark-surface);
+  color: var(--color-on-dark);
+  overflow: hidden;
+  border-block: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.slider__track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  height: 35px;
+  align-items: center;
+  animation: slider-marquee 38s linear infinite;
+}
+
+.slider__group {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-shrink: 0;
+}
+
+.slider__item {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+
+.slider__dot {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+#slider:hover .slider__track {
+  animation-play-state: paused;
+}
+
+@keyframes slider-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* one full group + its trailing gap */
+    transform: translateX(calc(-50% - 1.25rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider__track {
+    animation: none;
+  }
+}

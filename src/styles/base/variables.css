@@ -1,24 +1,155 @@
 :root {
-  --tinta: #2e211b;
+  /* =========================================================
+     RAW PALETTE
+     ========================================================= */
+
+  /* Page surfaces (the cream background stays — liked) */
   --crema: #f3ebdf;
   --crema-2: #eadfce;
+  --crema-0: #faf6ee; /* lighter than the page — raised cards */
+
+  /* Ink */
+  --tinta: #2e211b;
+
+  /* Dark structural sections (Video, Viandas, Footer) */
+  --carbon: #221c19;
+  --carbon-2: #2b2420;
+
+  /* Warm-neutral scale — placeholder for accents until the brand
+     palette is defined. Harmonises with the cream background. */
+  --warm-950: #241b16;
+  --warm-800: #463c34;
+  --warm-700: #5f534a;
+  --warm-600: #786b60;
+  --warm-500: #938576;
+  --warm-400: #b0a596;
+  --warm-300: #ccc2b3;
+  --warm-200: #ddd3c4;
+
+  /* Terra palette — born in the Hero, now also palette candidate A.
+     Sections still consume it ONLY via the semantic tokens below. */
   --terra: #c25a3c;
   --terra-deep: #9c3b27;
   --terra-deeper: #7e2e1e;
   --terra-light: #e3a07e;
   --tierra: #8a6f5c;
-  --linea: rgba(46, 33, 27, 0.12);
+
+  /* Companion-palette candidates that were tried and discarded
+     (too colourful next to terracotta). Kept for reference only —
+     nothing references them. */
+  --salvia: #6f8260;
+  --salvia-deep: #51624a;
+  --salvia-light: #c6d0b6;
+  --arcilla: #b06b5c;
+  --arcilla-deep: #8a4d40;
+  --arcilla-light: #e4bfb2;
+  --miel: #b07d3e;
+  --miel-deep: #8a5d28;
+  --miel-light: #e6c897;
+
+  /* =========================================================
+     SEMANTIC TOKENS
+     -- Assign the brand palette here later. Right now the accent
+     -- tokens point at neutral placeholders (no committed colour).
+     ========================================================= */
+
+  /* Backgrounds & surfaces */
+  --color-bg: var(--crema);
+  --color-surface: var(--crema);
+  --color-surface-2: var(--crema-2);
+  --color-surface-raised: var(--crema-0);
+
+  /* Text */
+  --color-ink: var(--tinta);
+  --color-ink-md-soft: var(--warm-800);
+  --color-ink-soft: var(--warm-600);
+  --color-ink-muted: var(--warm-500);
+
+  /* Lines / borders */
+  --color-line: rgba(46, 33, 27, 0.12);
+  --color-line-strong: rgba(46, 33, 27, 0.2);
+
+  /* Accent → the hero terracotta, confirmed as THE brand colour. */
+  --color-accent: var(--terra);
+  --color-accent-strong: var(--terra-deep);
+  --color-accent-soft: var(--terra-light);
+  --color-on-accent: var(--crema);
+
+  /* No secondary accent: a two-colour scheme read as too busy.
+     Terracotta is the single accent, used sparingly; everything else
+     stays neutral (ink/cream/carbon). */
+
+  /* Dark sections (structural — present in the original design) */
+  --color-dark-bg: var(--carbon);
+  --color-dark-surface: var(--carbon-2);
+  --color-on-dark: var(--crema);
+  --color-on-dark-soft: rgba(243, 235, 223, 0.72);
+  --color-line-on-dark: rgba(243, 235, 223, 0.16);
+
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
   --font-title: "Fraunces", serif;
   --font-body: "Roboto", sans-serif;
+  --font-script: "Great Vibes", cursive;
+
+  /* Fluid type scale */
+  --text-eyebrow: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-display-xs: clamp(0.9rem, 0.8rem + 1.1vw, 1.5rem);
+  --text-display-xsm: clamp(1.2rem, 1rem + 1.2vw, 1.55rem);
+  --text-display-sm: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+  --text-display-md: clamp(1.9rem, 1.3rem + 2vw, 2.6rem);
+  --text-display-lg: clamp(2.4rem, 1.6rem + 2.6vw, 3.25rem);
+
+  /* =========================================================
+     SPACING / LAYOUT
+     ========================================================= */
   --spacing-unit: 0.5rem;
-  --spacing-xs: calc(var(--spacing-unit) * 2);
-  --spacing-sm: calc(var(--spacing-unit) * 4);
-  --spacing-md: calc(var(--spacing-unit) * 8);
-  --spacing-lg: calc(var(--spacing-unit) * 16);
-  --spacing-xl: calc(var(--spacing-unit) * 32);
+  --spacing-xs: calc(var(--spacing-unit) * 2); /* 16px */
+  --spacing-sm: calc(var(--spacing-unit) * 4); /* 32px */
+  --spacing-md: calc(var(--spacing-unit) * 8); /* 64px */
+  --spacing-lg: calc(var(--spacing-unit) * 16); /* 128px */
+  --spacing-xl: calc(var(--spacing-unit) * 32); /* 256px */
+
+  /* Content widths (page is 1440 in Figma) */
+  --container: 1200px; /* 80px side margins  */
+  --container-narrow: 1193px; /* 123px side margins */
+  --container-about: 1044px; /* 198px side margins */
+  --page-gutter: var(--spacing-md);
+
+  /* =========================================================
+     RADII
+     ========================================================= */
+  --radius-xs: 4px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* =========================================================
+     ELEVATION
+     ========================================================= */
+  --shadow-card: 0 16px 28px -22px rgba(46, 33, 27, 0.5);
+  --shadow-card-hover: 0 24px 40px -24px rgba(46, 33, 27, 0.55);
+  --shadow-card-dark: 0 24px 40px -26px rgba(0, 0, 0, 0.8);
+  --shadow-nav: 0 10px 24px -16px rgba(46, 33, 27, 0.6);
+
+  /* =========================================================
+     MOTION
+     ========================================================= */
   --ease-out-soft: cubic-bezier(0.2, 0, 0, 1);
   --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Overshoots slightly — for entrances that should "pop" */
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
   --motion-fast: 250ms;
   --motion-mid: 350ms;
   --motion-slow: 800ms;
+
+  /* ---- Back-compat aliases (older section/hero rules) ---- */
+  --linea: var(--color-line);
+  --linea-crema: var(--color-line-on-dark);
 }

@@ -1,0 +1,174 @@
+/* Shared layout primitives reused across post-hero sections */
+
+.container {
+  width: min(var(--container), 100% - 2 * var(--page-gutter));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(var(--container-narrow), 100% - 2 * var(--page-gutter));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-eyebrow);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: var(--text-display-xsm);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+/* Inline ghost links used in section headers ("Ver todos →") */
+.text-link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-out-soft);
+}
+
+.text-link:hover {
+  color: var(--color-accent-strong);
+}
+
+/* Solid accent button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 1rem 1.6rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    background var(--motion-fast) var(--ease-out-soft);
+}
+
+.btn:hover {
+  background: var(--color-accent-strong);
+  transform: translateY(-2px);
+}
+
+.btn--video {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2.5px solid var(--color-on-accent);
+  border-radius: var(--radius-xs);
+  padding: 0.8rem 1.2rem;
+  background: transparent;
+  color: var(--color-on-accent);
+  filter: drop-shadow(0 3px 1px rgba(87, 87, 87, 0.703));
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    background var(--motion-fast) var(--ease-out-soft);
+}
+
+.btn--dark {
+  background: var(--color-ink);
+}
+
+.btn--dark:hover {
+  background: var(--color-dark-bg);
+}
+
+.btn .btn__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Reveal-on-scroll utility (toggled by IntersectionObserver).
+   Variants: .reveal--left / .reveal--right slide in sideways,
+   .reveal--zoom scales up from 92%. `--reveal-delay` offsets the start
+   (set inline or by reveal.ts for staggered groups). */
+/* The hidden state carries the EXIT transition: a quick even fade with
+   no stagger delay — replaying the slow springy entrance in reverse
+   reads as a jolt. The entrance transition lives on .is-visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity var(--motion-mid) var(--ease-in-out-soft),
+    transform var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.reveal--left {
+  transform: translateX(-56px);
+}
+
+.reveal--right {
+  transform: translateX(56px);
+}
+
+.reveal--zoom {
+  transform: scale(0.92);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal--zoom.is-visible {
+  transition-timing-function: var(--ease-spring);
+}
+
+/* Children of [data-reveal-stagger] containers — reveal.ts adds the
+   class and an incremental --reveal-delay, then flips is-visible. */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px) scale(0.94);
+  transition:
+    opacity var(--motion-mid) var(--ease-in-out-soft),
+    transform var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

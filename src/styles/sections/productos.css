@@ -1,0 +1,209 @@
+#productos {
+  background: var(--color-bg);
+  /* Figma: title at ~55px, gallery below; 656px tall */
+  padding-block: 4.5rem 7rem;
+}
+
+.productos__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+/* Carousel shell (shared visual language with viandas) */
+.carousel {
+  position: relative;
+}
+
+.carousel__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__track {
+  display: flex;
+  gap: 1.9rem;
+  padding-block: 0.5rem;
+  /* Centre the cards when they fit; fall back to left-aligned scroll
+     when the content overflows the viewport. */
+  width: max-content;
+  max-width: 100%;
+  /* margin-inline: auto; */
+}
+
+.carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: var(--radius-circle);
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-nav);
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    opacity var(--motion-fast) var(--ease-out-soft);
+}
+
+.carousel__nav svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.carousel__nav:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel__nav--prev {
+  left: -1.1rem;
+}
+
+.carousel__nav--next {
+  right: 0rem;
+  background-color: rgb(247, 247, 247);
+}
+
+.carousel__nav[data-disabled="true"] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Product card — Figma: 221 x 371 */
+.product-card {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  /* border: 1px solid var(--color-line); */
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  transition: transform var(--motion-mid) var(--ease-out-soft);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card__media {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.135);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--motion-mid) var(--ease-out-soft);
+}
+
+/* Capa que hereda la imagen de fondo para poder animar el zoom */
+.product-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transition: transform var(--motion-slow) var(--ease-out-soft);
+}
+
+.product-card:hover .product-card__media {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.product-card:hover .product-card__media::after {
+  transform: scale(1.07);
+}
+
+.product-card__body {
+  padding: 0.7rem 0 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.product-card__tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.product-card__name {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-ink-md-soft);
+  line-height: 1.4;
+}
+
+.product-card__footer {
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-card__price {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.product-card__stock {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.product-card__buy {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  width: 100%;
+  height: 1.9rem;
+  background-color: rgb(70, 70, 70);
+  color: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--motion-fast) var(--ease-out-soft);
+}
+
+.product-card__buy:hover {
+  background-color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card__media,
+  .product-card__media::after,
+  .product-card__buy {
+    transition: none;
+  }
+
+  .product-card:hover {
+    transform: none;
+  }
+
+  .product-card:hover .product-card__media::after {
+    transform: none;
+  }
+}

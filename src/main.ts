@@ -1,6 +1,9 @@
 import Lenis from 'lenis';
 import './styles/main.css';
 import { initHeroCarousel } from './scripts/hero-carousel';
+import { initCarousels } from './scripts/carousel';
+import { initReveal } from './scripts/reveal';
+import { initScrollLink } from './scripts/scroll-link';
 
 const prefersReducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)',
@@ -21,3 +24,6 @@ if (!prefersReducedMotion) {
 }
 
 initHeroCarousel();
+initCarousels();
+initReveal();
+initScrollLink();

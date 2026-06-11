@@ -1,0 +1,82 @@
+#join {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.join__inner {
+  width: min(var(--container-narrow), 100% - 2 * var(--page-gutter));
+  margin-inline: auto;
+  /* Figma: 185px tall band, content centred */
+  min-height: 185px;
+  padding-block: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.join__title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: var(--text-display-sm);
+  letter-spacing: -0.01em;
+}
+
+.join__text {
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
+  color: var(--color-on-accent);
+  opacity: 0.85;
+}
+
+.join__cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+  text-decoration: none;
+  transition: transform var(--motion-fast) var(--ease-out-soft);
+}
+
+.join__cta:hover {
+  transform: translateY(-2px);
+}
+
+.join__cta-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  padding-right: 1.1rem;
+}
+
+.join__cta-circle {
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: var(--radius-circle);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  display: grid;
+  place-items: center;
+  transition: transform var(--motion-fast) var(--ease-out-soft);
+}
+
+.join__cta:hover .join__cta-circle {
+  transform: translateX(3px);
+}
+
+.join__cta-circle svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+@media (max-width: 640px) {
+  .join__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

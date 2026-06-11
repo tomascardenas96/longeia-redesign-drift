@@ -1,0 +1,224 @@
+#eventos {
+  background: var(--color-bg);
+  padding-block: 1rem 6rem;
+}
+
+.eventos__header {
+  text-align: center;
+}
+
+.eventos__heading {
+  margin-top: 0.7rem;
+  margin-inline: auto;
+  max-width: 22ch;
+  line-height: 1.2;
+}
+
+/* Card grid: flyer on top, centered title, chip row, location */
+.eventos__grid {
+  list-style: none;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.evento-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  height: 17rem;
+  transition:
+    transform var(--motion-mid) var(--ease-out-soft),
+    box-shadow var(--motion-mid) var(--ease-out-soft),
+    border-color var(--motion-mid) var(--ease-out-soft);
+}
+
+.evento-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Flyer slot. Placeholder artwork until real flyers land — swap the
+   inner spans for an <img> and the layout holds. */
+.evento-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  height: 8.5rem;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  text-align: center;
+  color: var(--color-on-dark);
+}
+
+.evento-card__media > * {
+  transition: transform var(--motion-mid) var(--ease-out-soft);
+}
+
+.evento-card:hover .evento-card__media > * {
+  transform: scale(1.06);
+}
+
+.evento-card__media--terra {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-strong)
+  );
+}
+
+.evento-card__media--carbon {
+  background: linear-gradient(
+    140deg,
+    var(--color-dark-surface),
+    var(--color-dark-bg)
+  );
+}
+
+.evento-card__media--tierra {
+  background: linear-gradient(
+    135deg,
+    var(--color-ink-md-soft),
+    var(--color-ink)
+  );
+}
+
+.evento-card__media--carbon-terra {
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(194, 90, 60, 0.55),
+      transparent 60%
+    ),
+    var(--color-dark-bg);
+}
+
+.evento-card__media--terra-soft {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-soft),
+    var(--color-accent)
+  );
+}
+
+.evento-card__media--ink {
+  background:
+    radial-gradient(
+      circle at 15% 90%,
+      rgba(194, 90, 60, 0.45),
+      transparent 55%
+    ),
+    var(--color-ink);
+}
+
+.evento-card__flyer-script {
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.evento-card__flyer-word {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 0.9rem + 0.9vw, 1.5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.evento-card__content {
+  display: grid;
+  height: 8.5rem;
+  grid-template-rows: 1fr 1fr;
+}
+
+.evento-card__section {
+  height: 4.25rem;
+}
+
+.evento-card__section.first-section {
+  display: grid;
+  place-content: center;
+  padding: 1.2rem;
+}
+
+.evento-card__section.second-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.evento-card__titulo {
+  text-align: start;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.03rem;
+  line-height: 1.35;
+  color: var(--color-ink-md-soft);
+}
+
+/* Day / date / time chips inside a hairline strip */
+.evento-card__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.evento-card__chip {
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-ink-md-soft);
+  white-space: nowrap;
+  display: grid;
+  place-content: center;
+}
+
+.chip--mid {
+  border-left: 1px solid var(--color-line);
+  border-right: 1px solid var(--color-line);
+}
+
+.evento-card__lugar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.evento-card__lugar svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.eventos__footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--color-ink-md-soft);
+}
+
+@media (max-width: 1024px) {
+  .eventos__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .eventos__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.2rem;
+  }
+}

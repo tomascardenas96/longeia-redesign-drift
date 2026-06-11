@@ -1,0 +1,46 @@
+#marcas {
+  background: var(--color-bg);
+  /* Figma: short 220px band */
+  padding-block: 0 2.5rem;
+  text-align: center;
+}
+
+.marcas__title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: var(--text-display-xs);
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin-bottom: 1.9rem;
+}
+
+.marcas__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3.4rem;
+}
+
+.marcas__logo {
+  width: auto;
+  height: 80px;
+  object-fit: contain;
+  background: transparent;
+  /* drop-shadow follows the logo's alpha shape, not a box */
+  filter: drop-shadow(0 4px 8px rgba(46, 33, 27, 0.18));
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    filter var(--motion-fast) var(--ease-out-soft);
+}
+
+.marcas__logo:hover {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 10px 14px rgba(46, 33, 27, 0.26));
+}
+
+@media (max-width: 720px) {
+  .marcas__logo {
+    width: 120px;
+  }
+}

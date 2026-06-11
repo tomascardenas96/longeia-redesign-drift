@@ -1,0 +1,155 @@
+#comunidad {
+  background: var(--color-bg);
+  padding-block: 2.8rem;
+  /* The scroll-linked tiles start offset sideways */
+  overflow-x: clip;
+}
+
+/* Collage: 6 columns × 8 rows; the CTA tile sits dead-centre
+   (cols 3-4, rows 3-6) and every photo is placed explicitly
+   around it to reproduce the Figma mosaic. */
+.comunidad__mosaic {
+  width: min(var(--container-narrow), 100% - 2 * var(--page-gutter));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: clamp(34px, 4.2vw, 58px);
+  gap: clamp(8px, 1vw, 12px);
+}
+
+.comunidad__tile {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+  background: var(--color-surface-2);
+}
+
+.comunidad__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--motion-mid) var(--ease-out-soft);
+}
+
+.comunidad__tile:hover img {
+  transform: scale(1.06);
+}
+
+.comunidad__tile--a { grid-column: 1; grid-row: 1 / 5; }
+.comunidad__tile--b { grid-column: 1; grid-row: 5 / 9; }
+.comunidad__tile--c { grid-column: 2; grid-row: 1 / 6; }
+.comunidad__tile--d { grid-column: 2; grid-row: 6 / 9; }
+.comunidad__tile--e { grid-column: 3; grid-row: 1 / 3; }
+.comunidad__tile--f { grid-column: 3; grid-row: 7 / 9; }
+.comunidad__tile--g { grid-column: 4; grid-row: 1 / 3; }
+.comunidad__tile--h { grid-column: 4; grid-row: 7 / 9; }
+.comunidad__tile--i { grid-column: 5; grid-row: 1 / 4; }
+.comunidad__tile--j { grid-column: 5; grid-row: 4 / 9; }
+.comunidad__tile--k { grid-column: 6; grid-row: 1 / 6; }
+.comunidad__tile--l { grid-column: 6; grid-row: 6 / 9; }
+
+/* Central tile: photo + dark veil + invitation */
+.comunidad__cta {
+  grid-column: 3 / 5;
+  grid-row: 3 / 7;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.comunidad__cta img {
+  position: absolute;
+  inset: 0;
+}
+
+.comunidad__cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 28, 25, 0.55);
+}
+
+.comunidad__cta-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1rem;
+}
+
+.comunidad__cta-title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: clamp(1.2rem, 1rem + 1.2vw, 1.8rem);
+  line-height: 1.15;
+  color: var(--color-on-dark);
+  max-width: 14ch;
+  margin-inline: auto;
+}
+
+.comunidad__cta-script {
+  margin-top: 0.5rem;
+  font-family: var(--font-script);
+  font-size: clamp(1.15rem, 1rem + 1vw, 1.6rem);
+  /* The one warm brand touch over the dark photo */
+  color: var(--color-accent-soft);
+}
+
+/* Once the tile lands, its lines rise in one after the other */
+.comunidad__cta-title,
+.comunidad__cta-script {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-out-soft);
+}
+
+.comunidad__cta.is-visible .comunidad__cta-title {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--reveal-delay, 0ms) + 250ms);
+}
+
+.comunidad__cta.is-visible .comunidad__cta-script {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--reveal-delay, 0ms) + 420ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comunidad__tile:hover img {
+    transform: none;
+  }
+
+  .comunidad__cta-title,
+  .comunidad__cta-script {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .comunidad__mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: clamp(110px, 18vw, 150px);
+  }
+
+  .comunidad__tile {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .comunidad__tile--e,
+  .comunidad__tile--f,
+  .comunidad__tile--g,
+  .comunidad__tile--h {
+    display: none;
+  }
+
+  .comunidad__cta {
+    grid-column: 1 / -1;
+    grid-row: auto / span 2;
+  }
+}

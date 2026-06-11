@@ -1,0 +1,198 @@
+#viandas {
+  background: var(--color-dark-bg);
+  color: var(--color-on-dark);
+  /* Figma: 704px tall, title at ~93px */
+  padding-block: 6rem;
+}
+
+.viandas__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.6rem;
+}
+
+.viandas__heading {
+  margin-top: 0.5rem;
+  color: var(--color-on-dark);
+}
+
+.viandas__heading span {
+  font-style: italic;
+  font-weight: 400;
+  color: rgb(21, 94, 21);
+}
+
+.viandas__lead {
+  max-width: 42ch;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-on-dark-soft);
+  text-align: end;
+}
+
+/* Un poco más de aire entre cards que en productos (1.9rem + ~5px) */
+#viandas .carousel__track {
+  gap: 2.3rem;
+}
+
+/* Dark-theme overrides for the shared carousel nav */
+#viandas .carousel__nav {
+  background: var(--color-dark-surface);
+  border-color: var(--color-line-on-dark);
+  color: var(--color-on-dark);
+}
+
+/* Vianda card — mismo layout que .product-card, colores adaptados al fondo oscuro */
+.vianda-card {
+  flex: 0 0 255px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  transition: transform var(--motion-mid) var(--ease-out-soft);
+}
+
+.vianda-card:hover {
+  transform: translateY(-6px);
+}
+
+.vianda-card__media {
+  aspect-ratio: 1;
+  background: #34302c;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-xs);
+  height: 13rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--motion-mid) var(--ease-out-soft);
+}
+
+/* Capa que hereda la imagen de fondo para poder animar el zoom */
+.vianda-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transition: transform var(--motion-slow) var(--ease-out-soft);
+}
+
+.vianda-card:hover .vianda-card__media {
+  box-shadow: var(--shadow-card-dark);
+}
+
+.vianda-card:hover .vianda-card__media::after {
+  transform: scale(1.07);
+}
+
+.vianda-card__body {
+  flex: 1;
+  padding: 0.9rem 0 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Nombre y descripción: siempre ocupan el alto de 2 líneas
+   (clamp si sobra texto, espacio reservado si falta) para que
+   todas las cards midan exactamente lo mismo. */
+.vianda-card__name {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-on-dark-soft);
+  line-height: 1.5;
+  height: 2.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.vianda-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-on-dark-soft);
+  line-height: 1.4;
+  height: 2.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.vianda-card__price {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-on-dark);
+}
+
+.vianda-card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vianda-card__buy {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  height: 2.2rem;
+  background-color: rgb(70, 70, 70);
+  color: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--motion-fast) var(--ease-out-soft);
+}
+
+.vianda-card__buy:hover {
+  background-color: rgb(95, 95, 95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vianda-card,
+  .vianda-card__media,
+  .vianda-card__media::after,
+  .vianda-card__buy {
+    transition: none;
+  }
+
+  .vianda-card:hover {
+    transform: none;
+  }
+
+  .vianda-card:hover .vianda-card__media::after {
+    transform: none;
+  }
+}
+
+.viandas__footer {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+#viandas .text-link {
+  color: var(--color-on-dark);
+}
+
+#viandas .text-link:hover {
+  color: var(--color-on-dark-soft);
+}
+
+@media (max-width: 720px) {
+  .viandas__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,96 @@
+#video {
+  background: var(--color-bg);
+  padding-block: 1rem;
+}
+
+.video__panel {
+  position: relative;
+  width: min(var(--container), 100% - 2 * var(--page-gutter));
+  margin-inline: auto;
+  /* Figma: 1280 x 617 rounded panel */
+  min-height: 600px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1.5rem 6.7rem;
+  color: var(--color-on-dark);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(34, 28, 25, 0.571) 15%,
+      var(--crema) 85%,
+      var(--crema) 100%
+    ),
+    url("/src/assets/images/video.jpg"), var(--color-dark-bg);
+  background-size: cover;
+  background-position: start;
+}
+
+.video__title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: var(--text-display-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  filter: drop-shadow(0 3px 1px rgb(87, 87, 87));
+}
+
+.video__text {
+  margin-top: 0.8rem;
+  max-width: 60ch;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  filter: drop-shadow(0 3px 1px rgb(87, 87, 87));
+}
+
+.video__cta {
+  margin-top: 1rem;
+}
+
+.video__play {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+/* Breathing ring that radiates from the play icon */
+.video__play::before {
+  content: "";
+  position: absolute;
+  inset: -0.55rem;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-circle);
+  animation: video-pulse 2200ms var(--ease-out-soft) infinite;
+}
+
+@keyframes video-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.55);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video__play::before {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .video__panel {
+    min-height: 440px;
+    border-radius: var(--radius-md);
+  }
+}
