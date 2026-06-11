@@ -22,8 +22,19 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
-    <header>
-      <nav></nav>
+    <header class="site-header">
+      <nav class="site-header__bar" aria-label="Navegación principal">
+        <a href="#hero" class="site-header__brand">Longeia</a>
+        <ul class="site-header__links">
+          <li><a href="#productos">PRODUCTOS</a></li>
+          <li><a href="#viandas">VIANDAS</a></li>
+          <li><a href="#eventos">EVENTOS</a></li>
+          <li><a href="#comunidad">COMUNIDAD</a></li>
+        </ul>
+        <div class="site-header__actions">
+          <a href="#footer" class="site-header__ghost">Ingresar</a>
+        </div>
+      </nav>
     </header>
 
     <main>
@@ -175,7 +186,7 @@
           </div>
 
           <div class="hero__scroll-indicator">
-            <a href="#services">
+            <a href="#about">
               <p>SEGUÍ EXPLORANDO</p>
               <svg
                 viewBox="0 0 24 24"
@@ -194,14 +205,24 @@
       <!-- ============ ABOUT ============ -->
       <section id="about">
         <div class="about__grid">
-          <div class="about__media" data-scroll-from="left">
-            <img
-              class="about__image"
-              src="/3.webp"
-              alt="Bienestar y alimentación saludable"
-            />
+          <div
+            class="about__media"
+            data-scroll-from="left"
+            data-scroll-distance="300"
+          >
+            <div class="about__media-clip">
+              <img
+                class="about__image"
+                src="/about.jpg"
+                alt="Bienestar y alimentación saludable"
+              />
+            </div>
           </div>
-          <div class="about__content" data-scroll-from="right">
+          <div
+            class="about__content"
+            data-scroll-from="right"
+            data-scroll-distance="300"
+          >
             <p class="eyebrow">¿A qué nos dedicamos?</p>
             <h2 class="section-title about__heading">
               Bienestar real, acompañado por profesionales
@@ -853,7 +874,7 @@
                 <span class="testimonial__avatar">MG</span>
                 <div>
                   <div class="testimonial__name">María Gómez</div>
-                  <div class="testimonial__role">Tandil</div>
+                  <div class="testimonial__role">Tandil, Argentina</div>
                 </div>
               </div>
             </article>
@@ -893,7 +914,7 @@
                 <span class="testimonial__avatar">JP</span>
                 <div>
                   <div class="testimonial__name">Juan Pérez</div>
-                  <div class="testimonial__role">Tandil</div>
+                  <div class="testimonial__role">Tandil, Argentina</div>
                 </div>
               </div>
             </article>
@@ -933,7 +954,7 @@
                 <span class="testimonial__avatar">LF</span>
                 <div>
                   <div class="testimonial__name">Lucía Fernández</div>
-                  <div class="testimonial__role">Tandil</div>
+                  <div class="testimonial__role">Tandil, Argentina</div>
                 </div>
               </div>
             </article>
@@ -1126,44 +1147,44 @@
             >Empezá el día con clases de yoga &amp; meditación matinal guiadas
             por profesionales</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Viandas saludables y caseras, listas para disfrutar sin complicarte
             la rutina</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Acompañamiento profesional y personalizado en cada etapa de tu
             bienestar</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Sumate a la comunidad Longeia y cuidá tu salud de forma simple y
             consciente</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
         </div>
         <div class="slider__group" aria-hidden="true">
           <span class="slider__item"
             >Empezá el día con clases de yoga &amp; meditación matinal guiadas
             por profesionales</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Viandas saludables y caseras, listas para disfrutar sin complicarte
             la rutina</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Acompañamiento profesional y personalizado en cada etapa de tu
             bienestar</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
           <span class="slider__item"
             >Sumate a la comunidad Longeia y cuidá tu salud de forma simple y
             consciente</span
           >
-          <span class="slider__dot">·</span>
+          <span class="slider__dot">✳</span>
         </div>
       </div>
     </section>
@@ -1265,7 +1286,7 @@
         </div>
         <div class="footer__bottom">
           <p class="footer__copy">
-            © 2026 Longeia - Tandil, Buenos Aires, Argentina
+            © 2026 Longeia - Tandil, Argentina, Argentina
           </p>
           <div class="footer__legal">
             <a href="#">Términos</a>
@@ -1275,6 +1296,74 @@
         </div>
       </div>
     </footer>
+
+    <!-- ============ MODAL COMUNIDAD ============ -->
+    <div class="community-modal" data-community-modal aria-hidden="true">
+      <div class="community-modal__backdrop" data-modal-close></div>
+      <div
+        class="community-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="community-modal-title"
+        tabindex="-1"
+        data-modal-dialog
+      >
+        <button
+          class="community-modal__close"
+          type="button"
+          aria-label="Cerrar"
+          data-modal-close
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <figure class="community-modal__media" aria-hidden="true">
+          <img
+            src="/src/assets/images/comunidad/p1234035.jpg"
+            alt=""
+            loading="lazy"
+          />
+          <span class="community-modal__script">bienestar compartido</span>
+        </figure>
+        <div class="community-modal__body">
+          <p class="eyebrow community-modal__eyebrow">Comunidad Longeia</p>
+          <h2 class="community-modal__title" id="community-modal-title">
+            Unite a nuestra <em>comunidad</em>
+          </h2>
+          <p class="community-modal__text">
+            Eventos, rituales y novedades pensadas para vos, antes que nadie.
+          </p>
+          <div class="community-modal__actions">
+            <a href="#join" class="community-modal__cta" data-modal-close>
+              <span class="community-modal__cta-label">Quiero unirme</span>
+              <span class="community-modal__cta-circle">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
+            </a>
+            <button
+              class="community-modal__dismiss"
+              type="button"
+              data-modal-close
+            >
+              Ahora no
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

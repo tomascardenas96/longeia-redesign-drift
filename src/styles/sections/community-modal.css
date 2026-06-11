@@ -1,0 +1,386 @@
+/* Community invitation modal — opened by community-modal.ts after the
+   hero intro settles. Editorial split card: photo panel with a warm
+   terracotta veil and a script line crossing it, content column beside.
+   Stays in the DOM and toggles via .is-open so the exit can animate:
+   the entrance pops (spring, photo settle, staggered copy); the exit
+   is a single quick soft fade. */
+
+.has-modal {
+  overflow: hidden;
+}
+
+.community-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200; /* above the sticky header (100) */
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-xs);
+  visibility: hidden;
+  /* keep the overlay alive until the dialog's exit fade finishes */
+  transition: visibility 0s linear var(--motion-mid);
+}
+
+.community-modal.is-open {
+  visibility: visible;
+  transition: none;
+}
+
+.community-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 28, 25, 0.6);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.community-modal.is-open .community-modal__backdrop {
+  opacity: 1;
+}
+
+/* ---- Card ---- */
+
+.community-modal__dialog {
+  position: relative;
+  width: min(54rem, 100%);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-card-hover);
+  opacity: 0;
+  transform: translateY(40px) scale(0.94) rotate(-1.2deg);
+  transition:
+    opacity var(--motion-mid) var(--ease-in-out-soft),
+    transform var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.community-modal.is-open .community-modal__dialog {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-spring);
+}
+
+.community-modal__dialog:focus {
+  outline: none;
+}
+
+/* ---- Photo panel ---- */
+
+.community-modal__media {
+  position: relative;
+  min-height: 22rem;
+  overflow: hidden;
+}
+
+.community-modal__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* photo settles from a slight zoom while the card lands */
+  transform: scale(1.14);
+  transition: transform var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.community-modal.is-open .community-modal__media img {
+  transform: scale(1);
+  transition: transform 1400ms var(--ease-out-soft);
+}
+
+/* Warm terracotta veil rising from the base of the photo */
+.community-modal__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-accent-strong) 72%, transparent),
+    color-mix(in srgb, var(--color-accent) 22%, transparent) 45%,
+    transparent 72%
+  );
+}
+
+.community-modal__script {
+  position: absolute;
+  z-index: 1;
+  left: 1.4rem;
+  right: -1rem; /* lets the stroke graze the seam between panels */
+  bottom: 1.6rem;
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 2.7rem);
+  line-height: 1.1;
+  color: var(--color-on-accent);
+  transform: rotate(-4deg);
+  text-shadow: 0 2px 18px rgba(34, 28, 25, 0.35);
+}
+
+/* ---- Content column ---- */
+
+.community-modal__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(2.2rem, 5vw, 3.4rem) clamp(1.6rem, 4.5vw, 3rem);
+  /* faint warm glow from the corner, echoing the join band */
+  background: radial-gradient(
+    circle at 115% -15%,
+    color-mix(in srgb, var(--color-accent-soft) 26%, transparent),
+    transparent 55%
+  );
+}
+
+/* Concentric hairline rings off the corner — same motif as the join
+   band and the About portrait. Decorative only. */
+.community-modal__body::before,
+.community-modal__body::after {
+  content: "";
+  position: absolute;
+  border-radius: var(--radius-circle);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+  pointer-events: none;
+}
+
+.community-modal__body::before {
+  width: 240px;
+  height: 240px;
+  top: -130px;
+  right: -80px;
+}
+
+.community-modal__body::after {
+  width: 240px;
+  height: 240px;
+  top: -112px;
+  right: -62px;
+}
+
+/* Staggered entrance for the copy — each block springs up after the
+   card lands. The hidden state has no delay so everything fades out
+   together on close. */
+.community-modal__eyebrow,
+.community-modal__title,
+.community-modal__text,
+.community-modal__actions {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--motion-mid) var(--ease-in-out-soft),
+    transform var(--motion-mid) var(--ease-in-out-soft);
+}
+
+.community-modal.is-open :is(
+    .community-modal__eyebrow,
+    .community-modal__title,
+    .community-modal__text,
+    .community-modal__actions
+  ) {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-spring);
+  transition-delay: var(--modal-delay, 0ms);
+}
+
+.community-modal__eyebrow {
+  --modal-delay: 220ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.community-modal__eyebrow::before {
+  content: "✳";
+  font-size: 0.85em;
+  letter-spacing: 0;
+}
+
+.community-modal__title {
+  --modal-delay: 300ms;
+  margin-top: 1rem;
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: var(--text-display-md);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.community-modal__title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.community-modal__text {
+  --modal-delay: 380ms;
+  margin-top: 0.9rem;
+  max-width: 32ch;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.community-modal__actions {
+  --modal-delay: 460ms;
+  margin-top: 1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+/* Signature pill + circle-arrow CTA (the join band's, inverted for a
+   cream surface: terracotta pill, cream circle). */
+.community-modal__cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.4rem 0.4rem 1.5rem;
+  text-decoration: none;
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    background var(--motion-fast) var(--ease-out-soft);
+}
+
+.community-modal__cta:hover {
+  background: var(--color-accent-strong);
+  transform: translateY(-2px);
+}
+
+.community-modal__cta-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-on-accent);
+  padding-right: 1.1rem;
+}
+
+.community-modal__cta-circle {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: var(--radius-circle);
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
+  display: grid;
+  place-items: center;
+  transition: transform var(--motion-fast) var(--ease-out-soft);
+}
+
+.community-modal__cta:hover .community-modal__cta-circle {
+  transform: translateX(3px);
+}
+
+.community-modal__cta-circle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.community-modal__dismiss {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--motion-fast) var(--ease-out-soft);
+}
+
+.community-modal__dismiss:hover {
+  color: var(--color-ink);
+}
+
+.community-modal__close {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: var(--radius-circle);
+  cursor: pointer;
+  color: var(--color-ink-md-soft);
+  /* frosted chip so it reads on both the photo (mobile) and the cream */
+  background: color-mix(in srgb, var(--color-surface-raised) 72%, transparent);
+  backdrop-filter: blur(4px);
+  transition:
+    color var(--motion-fast) var(--ease-out-soft),
+    transform var(--motion-fast) var(--ease-out-soft);
+}
+
+.community-modal__close:hover {
+  color: var(--color-accent-strong);
+  transform: rotate(90deg);
+}
+
+.community-modal__close svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* ---- Compact layout: photo becomes a band on top ---- */
+
+@media (max-width: 680px) {
+  .community-modal__dialog {
+    grid-template-columns: 1fr;
+    width: min(26rem, 100%);
+  }
+
+  .community-modal__media {
+    min-height: 11rem;
+  }
+
+  .community-modal__script {
+    left: 1.2rem;
+    bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .community-modal__body {
+    padding: 1.8rem 1.5rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-modal,
+  .community-modal__backdrop,
+  .community-modal__dialog,
+  .community-modal__media img,
+  .community-modal__eyebrow,
+  .community-modal__title,
+  .community-modal__text,
+  .community-modal__actions {
+    transition: none !important;
+  }
+
+  .community-modal__media img {
+    transform: none;
+  }
+
+  .community-modal.is-open .community-modal__backdrop,
+  .community-modal.is-open .community-modal__dialog,
+  .community-modal.is-open :is(
+      .community-modal__eyebrow,
+      .community-modal__title,
+      .community-modal__text,
+      .community-modal__actions
+    ) {
+    opacity: 1;
+    transform: none;
+  }
+}

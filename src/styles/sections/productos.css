@@ -1,7 +1,7 @@
 #productos {
   background: var(--color-bg);
   /* Figma: title at ~55px, gallery below; 656px tall */
-  padding-block: 4.5rem 7rem;
+  padding-block: 5rem 8.5rem;
 }
 
 .productos__header {
@@ -48,7 +48,7 @@
   height: 2.6rem;
   border-radius: var(--radius-circle);
   border: none;
-  background: var(--color-surface);
+  background: var(--color-surface-raised);
   color: var(--color-ink);
   display: grid;
   place-items: center;
@@ -74,7 +74,6 @@
 
 .carousel__nav--next {
   right: 0rem;
-  background-color: rgb(247, 247, 247);
 }
 
 .carousel__nav[data-disabled="true"] {
@@ -101,7 +100,7 @@
 
 .product-card__media {
   aspect-ratio: 1;
-  background: rgba(255, 255, 255, 0.135);
+  background: var(--color-surface-2);
   background-size: cover;
   background-position: center;
   border-radius: var(--radius-sm);
@@ -174,12 +173,11 @@
 .product-card__buy {
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--color-accent);
   text-decoration: none;
   width: 100%;
-  height: 1.9rem;
-  background-color: rgb(70, 70, 70);
-  color: var(--crema);
+  height: 2.1rem;
+  background-color: var(--color-ink);
+  color: var(--color-on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,7 +186,7 @@
 }
 
 .product-card__buy:hover {
-  background-color: var(--color-ink);
+  background-color: var(--color-accent-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {

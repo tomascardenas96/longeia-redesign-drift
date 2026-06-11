@@ -86,7 +86,7 @@
   padding: 0.8rem 1.2rem;
   background: transparent;
   color: var(--color-on-accent);
-  filter: drop-shadow(0 3px 1px rgba(87, 87, 87, 0.703));
+  filter: drop-shadow(0 3px 4px rgba(34, 28, 25, 0.55));
   transition:
     transform var(--motion-fast) var(--ease-out-soft),
     background var(--motion-fast) var(--ease-out-soft);

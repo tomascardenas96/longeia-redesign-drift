@@ -1,14 +1,30 @@
 #join {
-  background: var(--color-accent);
-  color: var(--color-on-accent);
+  /* The band no longer runs edge to edge: it floats as a rounded
+     panel over the cream page (same language as the video panel). */
+  background: var(--color-bg);
+  padding-block: 1.5rem 2rem;
 }
 
 .join__inner {
+  position: relative;
   width: min(var(--container-narrow), 100% - 2 * var(--page-gutter));
   margin-inline: auto;
   /* Figma: 185px tall band, content centred */
   min-height: 185px;
-  padding-block: 1.6rem;
+  padding: 2.4rem clamp(1.6rem, 4vw, 3.6rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: var(--color-on-accent);
+  /* Deep terracotta with a warm glow rising from the corner —
+     richer than the flat accent fill, still one brand colour. */
+  background:
+    radial-gradient(
+      circle at 12% 120%,
+      color-mix(in srgb, var(--color-accent-soft) 45%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(115deg, var(--color-accent-strong), var(--color-accent) 72%);
+  box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +32,33 @@
   flex-wrap: wrap;
 }
 
+/* Concentric hairline rings bleeding off the corner — echoes the
+   ring around the About portrait. Decorative only. */
+.join__inner::before,
+.join__inner::after {
+  content: "";
+  position: absolute;
+  border-radius: var(--radius-circle);
+  border: 1px solid color-mix(in srgb, var(--color-on-accent) 28%, transparent);
+  pointer-events: none;
+}
+
+.join__inner::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -80px;
+}
+
+.join__inner::after {
+  width: 300px;
+  height: 300px;
+  top: -130px;
+  right: -60px;
+}
+
 .join__title {
+  position: relative;
   font-family: var(--font-title);
   font-weight: 500;
   font-size: var(--text-display-sm);
@@ -24,6 +66,7 @@
 }
 
 .join__text {
+  position: relative;
   margin-top: 0.5rem;
   font-size: 0.98rem;
   color: var(--color-on-accent);
@@ -31,6 +74,7 @@
 }
 
 .join__cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   background: var(--color-surface);

@@ -1,7 +1,7 @@
 #testimonios {
-  background: var(--color-bg);
+  background: var(--color-surface-2);
   /* Figma: 620px tall */
-  padding-block: 5.3rem;
+  padding-block: 6rem 7rem;
   text-align: center;
 }
 
@@ -29,8 +29,8 @@
   background: var(--color-surface-raised);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-sm);
-  padding: 1.4rem;
-  min-height: 200px;
+  padding: 2rem 2rem 1.5rem 2rem;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
@@ -47,17 +47,17 @@
 .testimonial__stars {
   display: flex;
   gap: 0.15rem;
-  color: var(--color-ink);
+  color: var(--color-accent);
 }
 
 .testimonial__stars svg {
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .testimonial__quote {
-  font-size: var(--text-sm);
-  line-height: 1.6;
+  font-size: var(--text-md);
+  line-height: 1.5;
   color: var(--color-ink-soft);
 }
 
@@ -66,6 +66,8 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
 }
 
 .testimonial__avatar {

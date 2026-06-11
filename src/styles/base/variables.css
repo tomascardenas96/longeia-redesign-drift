@@ -95,6 +95,7 @@
 
   /* Fluid type scale */
   --text-eyebrow: 0.75rem;
+  --text-xs: 0.8rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;

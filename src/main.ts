@@ -4,6 +4,8 @@ import { initHeroCarousel } from './scripts/hero-carousel';
 import { initCarousels } from './scripts/carousel';
 import { initReveal } from './scripts/reveal';
 import { initScrollLink } from './scripts/scroll-link';
+import { initHeader } from './scripts/header';
+import { initCommunityModal } from './scripts/community-modal';
 
 const prefersReducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)',
@@ -27,3 +29,5 @@ initHeroCarousel();
 initCarousels();
 initReveal();
 initScrollLink();
+initHeader();
+initCommunityModal();

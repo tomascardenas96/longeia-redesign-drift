@@ -1,6 +1,21 @@
+/* Cuadrícula fina apenas perceptible sobre el fondo de la sección */
 #eventos {
-  background: var(--color-bg);
-  padding-block: 1rem 6rem;
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--color-ink) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    var(--color-bg);
+  background-size:
+    32px 32px,
+    32px 32px,
+    auto;
+  padding-block: 1rem 7rem;
 }
 
 .eventos__header {
@@ -20,7 +35,7 @@
   margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.8rem;
 }
 
 .evento-card {
@@ -59,7 +74,21 @@
   color: var(--color-on-dark);
 }
 
+/* Trama de puntos sutil sobre el degradado del flyer */
+.evento-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-on-dark) 14%, transparent) 1px,
+    transparent 1.5px
+  );
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
 .evento-card__media > * {
+  position: relative;
   transition: transform var(--motion-mid) var(--ease-out-soft);
 }
 
@@ -160,7 +189,7 @@
   text-align: start;
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: 1.03rem;
+  font-size: 1rem;
   line-height: 1.35;
   color: var(--color-ink-md-soft);
 }

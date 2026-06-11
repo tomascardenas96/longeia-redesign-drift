@@ -2,6 +2,7 @@
 @import "./base/reset.css";
 @import "./base/global.css";
 @import "./layout/primitives.css";
+@import "./sections/header.css";
 @import "./sections/hero.css";
 @import "./sections/slider.css";
 @import "./sections/about.css";
@@ -14,3 +15,4 @@
 @import "./sections/comunidad.css";
 @import "./sections/join.css";
 @import "./sections/footer.css";
+@import "./sections/community-modal.css";
